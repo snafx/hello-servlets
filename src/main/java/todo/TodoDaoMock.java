@@ -49,8 +49,8 @@ public class TodoDaoMock implements TodoDao {
                 3,
                 LocalDate.now().minusDays(3)));
         todos.add(new TodoModel(
-                "Serwis ałta",
-                "Oddać furę do przeglądu",
+                "Serwis auta",
+                "Oddac fure do przegladu",
                 false,
                 4,
                 LocalDate.now().plusDays(7)));

@@ -12,9 +12,12 @@ public class TodoServlet extends HttpServlet {
 
     private TodoDao todoDao;
 
+    private TodoView todoView;
+
     @Override
     public void init() throws ServletException {
         todoDao = new TodoDaoMock();
+        todoView = new TodoViewHtml();
     }
 
     @Override
@@ -22,27 +25,8 @@ public class TodoServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         resp.setContentType("text/html; ISO-8859-1");
         List<TodoModel> allTodos = todoDao.getAllTodos();
-        writer.println("<ul>");
-        for (TodoModel model : allTodos) {
-            writer.println("<li>");
-            writer.println("<h3>" + model.getDate().toString() + "</h3>");
-            writer.println("<h1>" + model.getName() + "</h1>");
-            writer.println("<p>" + model.getDescription() + "</p>");
-            writer.println("<p>");
-            for (int i = 0; i < model.getPriority(); i++) {
-                writer.print("X");
-            }
-            writer.println("</p>");
-            writer.println("</li>");
-        }
-        writer.println("</ul>");
+        String todosView = todoView.show(allTodos);
+//        System.out.println(todosView);  //ta linijka wyswietli mi w logach htmlowe rzeczki
+        writer.println(todosView);
     }
 }
-/*
-    <li>
-        <h3>date</h3>
-        <h1>name</h1>
-        <p>desciption</p>
-        <p>XXXXXX</p> //priorytet
-    </li>
- */

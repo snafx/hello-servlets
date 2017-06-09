@@ -1,4 +1,6 @@
 todo\TodoDaoMock.class
+todo\TodoView.class
+todo\TodoViewHtml.class
 com\sda\calc\Calculator.class
 todo\TodoModel.class
 com\sda\HomeServlet.class
