@@ -2,11 +2,12 @@ todo\TodoChain.class
 todo\TodoDaoMock.class
 todo\TodoView.class
 todo\TodoViewHtml.class
+todo\TodoModel.class
+todo\TodoServlet.class
 com\sda\calc\Calculator.class
+todo\AddTodoChainElement.class
 todo\TodoChainElement.class
 todo\AllTodosChainElement.class
-todo\TodoModel.class
 com\sda\HomeServlet.class
 com\sda\HelloServlet.class
 todo\TodoDao.class
-todo\TodoServlet.class
