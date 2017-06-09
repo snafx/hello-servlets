@@ -1,7 +1,10 @@
+todo\TodoChain.class
 todo\TodoDaoMock.class
 todo\TodoView.class
 todo\TodoViewHtml.class
 com\sda\calc\Calculator.class
+todo\TodoChainElement.class
+todo\AllTodosChainElement.class
 todo\TodoModel.class
 com\sda\HomeServlet.class
 com\sda\HelloServlet.class
