@@ -1,5 +1,8 @@
 package todo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class AddTodoChainElement implements TodoChainElement {
 
     private String path;
@@ -18,8 +21,19 @@ public class AddTodoChainElement implements TodoChainElement {
     }
 
     @Override
-    public String action() {
+    public String action(HttpServletRequest req, HttpServletResponse resp) {
+
+        String valueToReturn = "<h1>OK</h1>";
+        if (TodoUtil.isWriteRequest(req)) {
+            TodoModel todoModel = TodoMapper.map(req);
+            todoDao.addTodo(todoModel);
+        } else {
+            valueToReturn = todoView.showAddForm();
+        }
+        return valueToReturn;
+
+
         //budujemy stringa ktory bedzie odpowiedzialny za dodanie nowej notatki
-        return todoView.showAddForm();
+//        return todoView.showAddForm();
     }
 }

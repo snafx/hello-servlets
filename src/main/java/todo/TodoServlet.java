@@ -24,7 +24,7 @@ public class TodoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         resp.setContentType("text/html");
-        writer.print(todoChain.invoke(req.getPathInfo()));
+        writer.print(todoChain.invoke(req, resp));
 
     }
 }
