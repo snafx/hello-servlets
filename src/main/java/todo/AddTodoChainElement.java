@@ -27,6 +27,10 @@ public class AddTodoChainElement implements TodoChainElement {
         if (TodoUtil.isWriteRequest(req)) {
             TodoModel todoModel = TodoMapper.map(req);
             todoDao.addTodo(todoModel);
+            resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+            //redirect statuscode 301 przekierowanie w headerze strony
+            //jak przegladarka znajdzie 301 to w headerze pod polem location znajdzie value z adresem gdzie ma przekierowac
+            resp.setHeader("Location", "/hello-servlets-1.0-SNAPSHOT/todo/all");
         } else {
             valueToReturn = todoView.showAddForm();
         }
