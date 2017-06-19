@@ -3,6 +3,7 @@ package todo;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Scanner;
 
 public class TodoMapper {
     public static TodoModel map(HttpServletRequest req) {
@@ -13,6 +14,22 @@ public class TodoMapper {
         model.setChecked(getChecked(map));
         model.setPriority(getPriority(map));
         model.setDate(getDate(map));
+        return model;
+    }
+
+    public static TodoModel map(Scanner scanner) {
+        return map(scanner.nextLine(), scanner.nextLine(), scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
+    }
+
+    public static TodoModel map(String title,String description,String status,String priority,String date) {
+        TodoModel model = new TodoModel();
+        model.setName(title);
+        model.setDescription(description);
+//        model.setChecked("true".equals(status));  // poprawna wersja, nie trzeba sprawdzac "false"
+//        model.setChecked(Boolean.valueOf(status));
+        model.setChecked(new Boolean(status));
+        model.setPriority(Integer.parseInt(priority));
+        model.setDate(LocalDate.parse(date));
         return model;
     }
 

@@ -3,6 +3,7 @@ todo\TodoDaoMock.class
 todo\TodoView.class
 todo\TodoViewHtml.class
 todo\TodoModel.class
+todo\TodoDaoFile.class
 todo\TodoServlet.class
 todo\TodoMapper.class
 com\sda\calc\Calculator.class
