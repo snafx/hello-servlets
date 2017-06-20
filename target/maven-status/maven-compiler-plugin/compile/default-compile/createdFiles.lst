@@ -11,6 +11,7 @@ todo\AddTodoChainElement.class
 todo\TodoChainElement.class
 todo\AllTodosChainElement.class
 todo\TodoUtil.class
+todo\Application.class
 com\sda\HomeServlet.class
 com\sda\HelloServlet.class
 todo\TodoDao.class

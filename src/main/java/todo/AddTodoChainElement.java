@@ -35,8 +35,6 @@ public class AddTodoChainElement implements TodoChainElement {
             valueToReturn = todoView.showAddForm();
         }
         return valueToReturn;
-
-
         //budujemy stringa ktory bedzie odpowiedzialny za dodanie nowej notatki
 //        return todoView.showAddForm();
     }

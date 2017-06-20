@@ -33,6 +33,16 @@ public class TodoMapper {
         return model;
     }
 
+    public static String map(TodoModel todoModel) {
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(todoModel.getName() + "\n")
+                .append(todoModel.getDescription() + "\n")
+                .append(String.valueOf(todoModel.isChecked()) + "\n")
+                .append(todoModel.getPriority() + "\n")
+                .append(todoModel.getDate() + "\n")
+                .toString();
+    }
+
     private static LocalDate getDate(Map<String, String[]> map) {
         String dateAsString = map.get("date")[0];
         String[] split = dateAsString.split("-");
