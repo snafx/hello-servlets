@@ -1,4 +1,4 @@
-package todo;
+package com.sda.todo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ public class TodoServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 //        todoDao = new TodoDaoMock();
-        todoDao = new TodoDaoFile(getServletContext(), "todo/data");
+        todoDao = new TodoDaoFile(getServletContext(), "com/sda/todo/data");
         todoView = new TodoViewHtml();
         todoChain = new TodoChain(todoView, todoDao);
     }

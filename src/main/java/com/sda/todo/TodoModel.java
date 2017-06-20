@@ -1,4 +1,4 @@
-package todo;
+package com.sda.todo;
 
 import java.time.LocalDate;
 

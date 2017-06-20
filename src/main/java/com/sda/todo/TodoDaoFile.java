@@ -1,4 +1,4 @@
-package todo;
+package com.sda.todo;
 
 import javax.servlet.ServletContext;
 import java.io.*;

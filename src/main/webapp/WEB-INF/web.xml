@@ -1,7 +1,7 @@
 <web-app>
     <servlet>
         <servlet-name>TodoServlet</servlet-name>
-        <servlet-class>todo.TodoServlet</servlet-class>
+        <servlet-class>com.sda.todo.TodoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TodoServlet</servlet-name>

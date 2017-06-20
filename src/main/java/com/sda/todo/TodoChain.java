@@ -1,4 +1,4 @@
-package todo;
+package com.sda.todo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
