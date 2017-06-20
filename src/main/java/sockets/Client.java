@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("192.168.100.100", 1234); //podłączamy sie do gniazdka (socket) 1234 z Servera
+//        Socket socket = new Socket("192.168.100.100", 1234); //podłączamy sie do gniazdka (socket) 1234 z Servera, laczymy sie z serwerem o konkretnym IP
+        Socket socket = new Socket("localhost", 1234); //podłączamy sie do gniazdka (socket) 1234 z Servera, u siebie mozna pisac
 
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         Scanner scanner = new Scanner(socket.getInputStream());
