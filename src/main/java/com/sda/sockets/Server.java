@@ -16,7 +16,7 @@ public class Server {
 
         //program ten odbiera cos z InputStream i wysyla go zwrotnie "input" plus dopisane przez nas "pong"
 
-        Scanner scanner = new Scanner(socket.getInputStream()); //input stream, to co przychodzi do mnie (serwera)
+        Scanner scanner = new Scanner(socket.getInputStream()); //input stream, to co przychodzi do mnie (serwera), strumien wejsciowy
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         //output stream, zwraca to co wychodzi
         Scanner scannerToUser = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class Server {
             System.out.println("Flushing output");
             writer.flush();  //flash faktycznie wysyla
         }
-        socket.close();
+        socket.close();  //zamykamy po sobie i "sprzątamy"
         serverSocket.close();
 
     }
