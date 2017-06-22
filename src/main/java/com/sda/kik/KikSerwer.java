@@ -51,7 +51,6 @@ public class KikSerwer {
 
     private static void myTurn(Scanner scanner, BufferedWriter socketOut, Board board) throws IOException {
         boolean status;
-        System.out.println(board.toString()); //wyswietla stan tablicy
         do {
             System.out.println("Insert position: ");
             String number = scanner.nextLine();
