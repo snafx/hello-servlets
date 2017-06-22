@@ -31,13 +31,13 @@ public class Board {
         return valueToReturn;
     }
 
-    private boolean isGameFinished() {
-
-    }
-
-    private boolean isFullfilled() {
-
-    }
+//    private boolean isGameFinished() {
+//
+//    }
+//
+//    private boolean isFullfilled() {
+//
+//    }
 
     //sprawdzamy czy elementy lezace na danych pozycjach sa rowne i czy sa zajete
     private boolean areValuesEquals(int i, int j, int k) {
@@ -54,13 +54,13 @@ public class Board {
         return flag;
     }
 
-    private boolean checkColumns() {
-
-    }
-
-    private boolean checkDiagonals() {
-
-    }
+//    private boolean checkColumns() {
+//
+//    }
+//
+//    private boolean checkDiagonals() {
+//
+//    }
 
     private boolean checkRange(int position) {
         return (position > 0 && position < 10);

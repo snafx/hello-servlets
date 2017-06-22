@@ -1,4 +1,4 @@
-package com.sda.homework;
+package com.sda.warmUp.homework.homework;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Serwer {
+public class Server {
     //laczymy sie do serwera
     //wysyla 5 liczb podanych z reki
     //czeka na wynik

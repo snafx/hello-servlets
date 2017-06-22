@@ -1,4 +1,4 @@
-package com.sda.homework;
+package com.sda.warmUp.homework.homework;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
