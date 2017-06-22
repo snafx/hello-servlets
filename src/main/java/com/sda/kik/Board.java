@@ -1,7 +1,5 @@
 package com.sda.kik;
 
-import java.util.Arrays;
-
 public class Board {
     //tablica String[]
     //konstruktor tworzacy pusta tablice
@@ -12,6 +10,8 @@ public class Board {
     //O|X|X
 
     private String[] array;
+
+    private int counter = 0;
 
     public Board() {
         array = new String[9];
@@ -26,18 +26,21 @@ public class Board {
         boolean valueToReturn = false;
         if (checkRange(position) && isPositionEmpty(position)) {
             array[position - 1] = sign;
+            counter++;
             valueToReturn = true;
         }
         return valueToReturn;
     }
 
-//    private boolean isGameFinished() {
-//
-//    }
-//
-//    private boolean isFullfilled() {
-//
-//    }
+    //metoda ta zwroci true jest ktores z 4 returnów bedzie true
+    public boolean isGameFinished() {
+        return isFullfilled() || checkRows() || checkColumns() || checkDiagonals();
+    }
+
+    //sprawdzamy czy wszystkie pola są zapełnione
+    private boolean isFullfilled() {
+        return counter == 9;
+    }
 
     //sprawdzamy czy elementy lezace na danych pozycjach sa rowne i czy sa zajete
     private boolean areValuesEquals(int i, int j, int k) {
@@ -54,13 +57,19 @@ public class Board {
         return flag;
     }
 
-//    private boolean checkColumns() {
-//
-//    }
-//
-//    private boolean checkDiagonals() {
-//
-//    }
+    private boolean checkColumns() {
+        boolean flag;
+        int i = 0;
+        do {
+            flag = areValuesEquals(i, i + 3, i + 6);
+            i++;
+        } while (i < 3 && !flag);
+        return flag;
+    }
+
+    private boolean checkDiagonals() {
+        return array[4] != null && (areValuesEquals(0, 4, 8) || areValuesEquals(2, 4, 6));
+    }
 
     private boolean checkRange(int position) {
         return (position > 0 && position < 10);
@@ -82,5 +91,9 @@ public class Board {
             stringBuilder.append((i + 1) % 3 == 0 ? "\n" : "|");
         }
         return stringBuilder.toString();
+    }
+
+    public int getCounter() {
+        return counter;
     }
 }

@@ -1,6 +1,5 @@
 package com.sda.kik;
 
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -33,27 +32,37 @@ public class KikSerwer {
         Scanner socketIn = new Scanner(socket.getInputStream());
 
         Board board = new Board();
-        boolean flag = true;
         System.out.println("You are first!");
-        boolean status;
-        while (flag) {
-            System.out.println(board.toString()); //wyswietla stan tablicy
-            do {
-                System.out.println("Insert position: ");
-                String number = scanner.nextLine();
-                //podajemy pozycje na ktorej chcemy wstawic naszego X
-                status = board.addMove(Integer.valueOf(number), "X");
-                if (status) {
-                    socketOut.write(number + "\n");
-                    System.out.println(board);
-                    socketOut.flush();
-                } else {
-                    System.out.println("Invalid position! Insert it again.");
-                }
-            } while (!status);
-            //dostajemy pozycje "O" od naszego przeciwnika
-            String opponentPosition = socketIn.nextLine();
-            board.addMove(Integer.valueOf(opponentPosition), "O");
+        while (!board.isGameFinished()) {
+            System.out.println(board);
+            if (board.getCounter() % 2 == 0) {
+                myTurn(scanner, socketOut, board);
+            } else {
+                opponentsTurn(socketIn, board);
+            }
         }
+    }
+
+    private static void opponentsTurn(Scanner socketIn, Board board) {
+        //dostajemy pozycje "O" od naszego przeciwnika
+        String opponentPosition = socketIn.nextLine();
+        board.addMove(Integer.valueOf(opponentPosition), "O");
+    }
+
+    private static void myTurn(Scanner scanner, BufferedWriter socketOut, Board board) throws IOException {
+        boolean status;
+        System.out.println(board.toString()); //wyswietla stan tablicy
+        do {
+            System.out.println("Insert position: ");
+            String number = scanner.nextLine();
+            //podajemy pozycje na ktorej chcemy wstawic naszego X
+            status = board.addMove(Integer.valueOf(number), "X");
+            if (status) {
+                socketOut.write(number + "\n");
+                socketOut.flush();
+            } else {
+                System.out.println("Invalid position! Insert it again.");
+            }
+        } while (!status);
     }
 }
