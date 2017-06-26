@@ -14,7 +14,7 @@ public class Server {
         Socket socket = serverSocket.accept();  //metida accept "zawiesza" dzialanie programu i czeka na polaczenie
         System.out.println("connection established");
 
-        //program ten odbiera cos z InputStream i wysyla go zwrotnie "input" plus dopisane przez nas "pong"
+        //program ten odbiera cos z InputStream i wysyla go zwrotnie "input"
 
         Scanner scanner = new Scanner(socket.getInputStream()); //input stream, to co przychodzi do mnie (serwera), strumien wejsciowy
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
