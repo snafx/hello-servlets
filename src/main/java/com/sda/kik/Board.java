@@ -79,6 +79,14 @@ public class Board {
         return array[position - 1] == null;  //jezeli jest puste zwroci true
     }
 
+    //metoda dla KIK okienkowego
+    public void resetBoard() {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = null;
+        }
+        counter = 0;
+    }
+
     //1|2|3
     //X|O|6
     //O|X|X
