@@ -26,28 +26,34 @@ public class Board {
         boolean valueToReturn = false;
         if (checkRange(position) && isPositionEmpty(position)) {
             array[position - 1] = sign;
-            counter++;
+            counter++;  //podbijam licznik zajetych pol na tablicy
             valueToReturn = true;
         }
         return valueToReturn;
     }
 
-    //metoda ta zwroci true jest ktores z 4 returnów bedzie true
+    //wystarczy, ze ktorys z elementow bedzie true, wtedy gra sie konczy
     public boolean isGameFinished() {
         return isFullfilled() || checkRows() || checkColumns() || checkDiagonals();
     }
 
-    //sprawdzamy czy wszystkie pola są zapełnione
+    //sprawdzamy czy wszystkie pola są zapełnione (czy bylo 9 ruchow)
     private boolean isFullfilled() {
         return counter == 9;
     }
 
     //sprawdzamy czy elementy lezace na danych pozycjach sa rowne i czy sa zajete
+    //porownuje czy elementy array[i], array[j], array[k] sa sobie rowne
     private boolean areValuesEquals(int i, int j, int k) {
         return array[i] != null && array[i].equals(array[j]) && array[i].equals(array[k]);
+        //to pierwsze sprawdzenie zabezpiecza nas przed porownywaniem nulla do czegos
+        //jesli array[i] bedzie nullem to od razu zwrocimy false, bez exceptiona
     }
 
+    //czy jest jakis wiersz z wszystkimi takimi samymi wartosciami?
     private boolean checkRows() {
+        //tak dobieramy iterator i przekazywane wartosci, ze beda
+        //trzy iteracje i w kazdej dostane wspolrzedne kolejnego wiersza
         boolean flag;
         int i = 0;
         do {
@@ -57,7 +63,10 @@ public class Board {
         return flag;
     }
 
+    //czy jest jakas kolumna z wszystkimi takimi samymi wartosciami?
     private boolean checkColumns() {
+        //tak dobieramy iterator i przekazywane wartosci, ze beda
+        //trzy iteracje i w kazdej dostane wspolrzedne kolejnej kolumny
         boolean flag;
         int i = 0;
         do {
@@ -67,7 +76,9 @@ public class Board {
         return flag;
     }
 
+    //czy jest jakas przekatna z wszystkimi takimi samymi wartosciami?
     private boolean checkDiagonals() {
+        //jesli srodkowe pole bedzie nullem, to od razu zwracam false
         return array[4] != null && (areValuesEquals(0, 4, 8) || areValuesEquals(2, 4, 6));
     }
 

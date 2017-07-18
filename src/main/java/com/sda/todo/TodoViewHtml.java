@@ -43,7 +43,7 @@ public class TodoViewHtml implements TodoView {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<a href=\"/hello-servlets-1.0-SNAPSHOT/todo/all\">All</a><br>");
         stringBuilder.append("<a href=\"/hello-servlets-1.0-SNAPSHOT/todo/add\">Add</a><br>");
-        stringBuilder.append("<form method=\"get\" action=\"/hello-servlets-1.0-SNAPSHOT/todo/add\"><br>\n");
+        stringBuilder.append("<form method=\"getCounter\" action=\"/hello-servlets-1.0-SNAPSHOT/todo/add\"><br>\n");
         stringBuilder.append("Name: <input type=\"text\" name=\"name\" /><br>\n");
         stringBuilder.append("Description: <input type=\"text\" name=\"description\" /><br>\n");
         stringBuilder.append("Checked: <input type=\"checkbox\" name=\"checked\" /><br>\n");

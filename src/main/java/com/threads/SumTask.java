@@ -1,7 +1,10 @@
 package com.threads;
 
 import java.util.List;
-
+/**
+ * zwykla klasa implementujaca interfejs  runable - moze byc wykonywana na watkach
+ * ta klasa w metodzie run sumuje wszystkie integery przekazane do niejw konstruktorze
+ */
 public class SumTask implements Runnable {
 
     private List<Integer> list;

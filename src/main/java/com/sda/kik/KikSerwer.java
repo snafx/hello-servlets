@@ -6,7 +6,10 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
-
+/**
+ * serwer bedzie wpisywal krzyzyki na boarda "X"
+ * czyli niedosc,ze jest serwerem, to jeszcze jest jednym z graczy
+ */
 public class KikSerwer {
     public static void main(String[] args) throws IOException {
 
@@ -20,31 +23,51 @@ public class KikSerwer {
          */
 
         //zakladamy ze serwer jest X
+        //otwieramy port
         ServerSocket serverSocket = new ServerSocket(1234);
-        System.out.println("Waiting for connection with another player...");
-        Socket socket = serverSocket.accept();
-        System.out.println("Connection established with new opponent");
-        System.out.println("Game on!");
 
-        Scanner scanner = new Scanner(System.in);
+        //serwer bedzie dzialal w nieskonczonej petli
+        //po zakonczonej grze bedzie oczekiwal na kolejne polaczenie od klienta
+        boolean flag = true;
+        while (flag) {
+            //nasluchujemy az do momentu kiedy jakis klient sie podlaczy
+            System.out.println("Waiting for connection with another player...");
 
-        BufferedWriter socketOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); //wysylamy jako pierwsi X do clienta na pozycji na ktorej wstawimy
-        Scanner socketIn = new Scanner(socket.getInputStream());
+            Socket socket = serverSocket.accept();
+            System.out.println("Connection established with new opponent");
+            System.out.println("Game on!");
 
-        Board board = new Board();
-        System.out.println("You are first!");
-        while (!board.isGameFinished()) {
-            System.out.println(board);
-            if (board.getCounter() % 2 == 0) {
-                myTurn(scanner, socketOut, board);
-            } else {
-                opponentsTurn(socketIn, board);
+            //skaner do czytanie od usera-serwera
+            Scanner scanner = new Scanner(System.in);
+
+            //writer do wypisywania na zewnatrz
+            BufferedWriter socketOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); //wysylamy jako pierwsi X do clienta na pozycji na ktorej wstawimy
+            //skaner do czytania wiadomosci od klienta
+            Scanner socketIn = new Scanner(socket.getInputStream());
+
+            Board board = new Board();
+            System.out.println("You are first!");
+            //petla tak dlugo dopoki gra sie nie skonczy
+            while (!board.isGameFinished()) {
+                System.out.println("Current board:");
+                System.out.println(board);
+                //serwer zaczyna gre i ma parzyste ruchy
+                if (board.getCounter() % 2 == 0) {
+                    myTurn(scanner, socketOut, board);
+                } else {
+                    opponentsTurn(socketIn, board);
+                }
             }
+            System.out.println("Final board:");
+            System.out.println(board);
+
+            System.out.println("Finisking connection");
+            socket.close();
         }
     }
 
     private static void opponentsTurn(Scanner socketIn, Board board) {
-        //dostajemy pozycje "O" od naszego przeciwnika
+        //dostajemy pozycje "O" od naszego przeciwnika-klienta
         String opponentPosition = socketIn.nextLine();
         board.addMove(Integer.valueOf(opponentPosition), "O");
     }
@@ -53,10 +76,12 @@ public class KikSerwer {
         boolean status;
         do {
             System.out.println("Insert position: ");
+            //zaczytanie pozycji od gracza-serwera
             String number = scanner.nextLine();
             //podajemy pozycje na ktorej chcemy wstawic naszego X
             status = board.addMove(Integer.valueOf(number), "X");
             if (status) {
+                //jesli udalo sie poprawnie dodac pozycje do tablicy to wysylamy klientowi te pozycje
                 socketOut.write(number + "\n");
                 socketOut.flush();
             } else {
