@@ -1,5 +1,7 @@
 package com.threads;
 
+// zwykla klasa implementujaca interfejs Runnable - dzieki niemu moge stworzyc wątek
+
 public class MyTask implements Runnable {
 
     private String name;

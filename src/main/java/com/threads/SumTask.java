@@ -17,10 +17,21 @@ public class SumTask implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        /**
+         * int sum = 0;
+         * for (int element : list) {
+         *      sum += element;
+         * }
+         * System.out.println("My sum is: " + sum);
+         */
         int sum = list.stream()
-                .mapToInt(e -> e)
+                .mapToInt(e -> e)  //zwroci intStream, a strumien intow posiada metode sum
                 .sum();
+
+        //zamiast wypisania dodaje moj wynik do jedynego obiektu klasu Summer
         Summer.getInstance().add(sum);
+        //po tej operacji odpalam metode psujacą - po to zeby watki nazwajem na siebie czekaly
         Summer.getInstance().test();
     }
 }

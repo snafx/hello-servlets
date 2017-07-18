@@ -1,28 +1,33 @@
 <web-app>
     <servlet>
-        <servlet-name>TodoServlet</servlet-name>
-        <servlet-class>com.sda.todo.TodoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TodoServlet</servlet-name>
-        <url-pattern>/todo/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>com.sda.HelloServlet</servlet-class>
+        <servlet-class>com.sda.servlets.HelloServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/calc/*</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+    <servlet> <!--sluzy do definiowania servetow-->
         <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>com.sda.HomeServlet</servlet-class>
+        <servlet-class>com.sda.servlets.HomeServlet</servlet-class> <!--sciezka do klasy razem z pakietem; PPM- copy reference-->
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <servlet-name>HomeServlet</servlet-name> <!-- nazwa servletu -->
+        <url-pattern>/home</url-pattern> <!-- pod jaka sciezka ma odpowiadac nasz servlet -->
+
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TodoServlet</servlet-name>
+        <servlet-class>com.sda.servlets.todo.TodoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TodoServlet</servlet-name>
+        <url-pattern>/todo/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
