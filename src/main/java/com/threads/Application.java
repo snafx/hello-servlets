@@ -61,5 +61,16 @@ public class Application {
         sumThread2.start();
         sumThread3.start();
 
+        //MORE:
+        //tutaj moze sie zdarzyc, ze zakazdymodpaleniem programu dostane inna sume sum
+        //to dlatego, ze prawdopodobnie kazdy watek na raz chce wpisac swoja sume na np.
+        //pierwszy element listy. I udaje im sie to!
+        //zeby to naprawic nalezy dopisac "synchronized" do sygnatury metody add w Summerze
+        //oraz w metodzie getInstance
+        //ten zabieg zapobiegnie temu, ze kazdy watek bedzie sie pchał na ten sam element tablicy
+        // (ustawi te watki w kolejce, jak do kasy)
+        //dzieki temu kazdy watek wrzuci swoj wynik na osobne miejsce na liscie
+
+
     }
 }
